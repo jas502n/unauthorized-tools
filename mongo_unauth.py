@@ -24,34 +24,30 @@ print banner
 
 def database_mongo(ip):
     try:
-    	port = 27017
+        port = 27017
         client = pymongo.MongoClient(ip , port)
         dbs = client.database_names()
-        # client.close()
         for db in dbs:
-        	mydb = client[db]
-        	cols = mydb.collection_names()
-        	for col in cols:
-        		book = mydb[col]
-        		print '\n'
-        		print '___________________________________________________________________________________________________\n'
-        		print "[+] Successful Mongodb Unauthorized Exit!  %s:%s" % (ip,str(port))
-        		print
-                print '>>>>>' 
-                print 'DB:' + db + '----'+'Collections:' + col
+            mydb = client[db]
+            cols = mydb.collection_names()
+            for col in cols:
+                book = mydb[col]
+                print '___________________________________________________________________________________________________\n'
+                info ='DB:' + db + '----'+'Collections:' + col
+                if len(db) != 0 or len(col) != 0:
+                    print "[+] Successful Mongodb Unauthorized Exit!  %s:%s" % (ip,str(port))
+                    print
+                    print '>>>>>' 
+                    print info
+
                 cont = str(book.find_one())
                 print cont.decode('unicode_escape')
-                # print 'Number:'+str(book.find().count())
+                print 'Number:'+str(book.find().count())
+                client.close()
+                
 
-
-        # if 'local' in database_names:
-        #     print "[+] Successful Mongodb Unauthorized Exit!  %s:%s" % (ip,str(port))
-        #     print database_names
-        #     print
-        # else:
-        #     print "[+] %s No Mongodb Unauthorized Exit !" % ip
     except Exception as e:
-    	print
+        print
         # print "[+] %s No Mongodb Unauthorized Exit !" % ip
 
 
