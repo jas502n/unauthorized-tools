@@ -3,4 +3,6 @@
 
 ## mongo unauthorized
 
+`python mongo_unauth.py ip.txt`
+
 ![](./mongo_unauth.png)
